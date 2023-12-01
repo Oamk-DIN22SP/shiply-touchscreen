@@ -7,7 +7,7 @@ const LockerLocationDetails: React.FC<LockerLocationProps> = ({
   address,
 }) => {
   return (
-    <div className="pb-6">
+    <div className="pb-2">
       <h1 className="text-[23px] font-bold leading-8 text-[#4A4A4A]">
         {title}
       </h1>

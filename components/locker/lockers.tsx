@@ -7,7 +7,7 @@ import LockerOperations from "./operation";
 import LockerLocationDetails from "./locker-location";
 import LockerForm from "./locker-form";
 
-const Cabinets = () => {
+const Lockers = () => {
   const cabinetStore = useCabinet();
   const locationStore = useLocation();
   return (
@@ -36,4 +36,4 @@ const Cabinets = () => {
   );
 };
 
-export default Cabinets;
+export default Lockers;

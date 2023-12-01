@@ -50,7 +50,7 @@ const LockerForm = () => {
         <Button
           onClick={onSubmit}
           disabled={loading}
-          className="w-fit bg-[#42820F] px-8 font-bold shadow-md"
+          className="w-fit bg-[#42820F] py-2 px-8 font-bold shadow-md"
         >
           OK
         </Button>
