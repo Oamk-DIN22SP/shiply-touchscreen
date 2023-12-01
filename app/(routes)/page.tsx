@@ -1,6 +1,6 @@
 import Container from "@/components/ui/container";
 import Locations from "@/components/location/locations";
-import Cabinets from "@/components/cabinet/cabinets";
+import Cabinets from "@/components/locker/lockers";
 import Details from "@/components/details/details";
 import Panel from "@/components/ui/panel";
 import Button from "@/components/ui/button";

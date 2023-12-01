@@ -13,11 +13,11 @@ const Locker: React.FC<LockerProps> = ({
   const getStatusColor = (status: String) => {
     switch (status) {
       case "empty-locker":
-        return ["bg-[#D5F9B8]", "hover:bg-[#AEEEA0]"];
+        return ["bg-[#A5F366]", "hover:bg-[#AEEEA0]"];
       case "ready-to-pickup":
-        return ["bg-[#F3C1FE]", "hover:bg-[#D9A8E6]"];
+        return ["bg-[#F53D3D]", "hover:bg-[#F3C1FE]"];
       case "to-be-delivered":
-        return ["bg-[#FAA6A6]", "hover:bg-[#E18383]"];
+        return ["bg-[#F53D3D]", "hover:bg-[#A5F366]"];
       default:
         return ["", ""];
     }
@@ -30,7 +30,7 @@ const Locker: React.FC<LockerProps> = ({
     cabinetStore.setState({ activeCabinetId: cabinet?.id });
   }
   return ( 
-    <div className={`w-[80px] h-[80px] bg-[#D5F9B8] flex items-center justify-center rounded hover:cursor-pointer font-bold ${bgColor} ${hoverColor}`} onClick={changeDetailsState}>
+    <div className={`w-[120px] h-[120px] bg-[#E2E7FD] flex items-center justify-center rounded hover:cursor-pointer font-bold text-[58px] text-[#4A4A4A] ${bgColor} ${hoverColor}`} onClick={changeDetailsState}>
       {cabinet?.id}
     </div>
    );
