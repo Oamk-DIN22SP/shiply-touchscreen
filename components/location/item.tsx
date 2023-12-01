@@ -9,12 +9,9 @@ interface LocationItemProps {
 }
 const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
   const locationStore = useLocation();
-  const cabinetStore = useCabinet();
 
   const setLocation = async () => {
     locationStore.setActive(location);
-    const cabinets = await getCabinets(location?.id);
-    cabinetStore.setState({ data: cabinets });
   };
 
   return (
