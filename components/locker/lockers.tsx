@@ -6,15 +6,32 @@ import Button from "../ui/button";
 import LockerOperations from "./operation";
 import LockerLocationDetails from "./locker-location";
 import LockerForm from "./locker-form";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Lockers = () => {
+  const router = useRouter();
   const cabinetStore = useCabinet();
   const locationStore = useLocation();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    if (!locationStore.active) {
+      router.push("/");
+    }
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div>
       <LockerLocationDetails
-        title="Market Street 9876F"
-        address="Plaza Drive, Springfield, The Simpsons / Springfield"
+        title={locationStore?.active?.title || ""}
+        address={locationStore?.active?.address || ""}
       />
 
       <div className="py-4 flex gap-4 flex-wrap items-center justify-center">

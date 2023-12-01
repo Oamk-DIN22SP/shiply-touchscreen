@@ -10,15 +10,12 @@ import useCabinet from "@/hooks/use-cabinet";
 const Locations = () => {
   // hook to get data from store
   const locationStore = useLocation();
-  const cabinetStore = useCabinet();
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const locations = await getLocation();
         locationStore.setState({ data: locations });
-        locationStore.setActive(locations[0]);
-        const cabinets = await getCabinets(locations[0].id);
-        cabinetStore.setState({ data: cabinets });
       } catch (error) {
         console.error("Error fetching locations:", error);
       }

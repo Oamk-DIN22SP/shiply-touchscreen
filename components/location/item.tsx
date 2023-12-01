@@ -2,11 +2,21 @@ import useLocation from "@/hooks/use-location";
 import { cn } from "@/lib/utils";
 import { Location } from "@/types";
 import Button from "../ui/button";
+import useCabinet from "@/hooks/use-cabinet";
+import getCabinets from "@/actions/get-cabinets";
 interface LocationItemProps {
   location: Location;
 }
 const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
   const locationStore = useLocation();
+  const cabinetStore = useCabinet();
+
+  const setLocation = async () => {
+    locationStore.setActive(location);
+    const cabinets = await getCabinets(location?.id);
+    cabinetStore.setState({ data: cabinets });
+  };
+
   return (
     <div
       className={cn(
@@ -14,9 +24,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
         location?.id === locationStore.active?.id &&
           "bg-[#727EAF] text-white hover:bg-[#727EAF]"
       )}
-      onClick={() => {
-        locationStore.setActive(location);
-      }}
+      onClick={setLocation}
     >
       <p
         className={cn(
@@ -27,7 +35,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ location }) => {
         {location?.id}
       </p>
       <p className="text-[18px] font-semibold max-w-[325px]">
-        {location?.title}
+        {location?.title +", "+ location?.address}
       </p>
       <Button
         className={cn(
