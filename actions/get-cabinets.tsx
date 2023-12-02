@@ -1,10 +1,10 @@
 import { Cabinets } from "@/types";
+import BACKEND_HOSTNAME from "../config/backend_config"
+// IDK why ENV is not working, so I just hardcoded the BACKEND_HOSTNAME
 
-// IDK why ENV is not working, so I just hardcoded the URL
-const URL = `http://localhost:3000/api`;
 
 const getCabinets = async (locationId: String) => {
-  const res = await fetch(`${URL}/locations/${locationId}/cabinets`);
+  const res = await fetch(`${BACKEND_HOSTNAME}/locations/${locationId}/cabinets`);
   return res.json();
 
   const demoData: Cabinets[] = [

@@ -1,7 +1,8 @@
+import BACKEND_HOSTNAME from "@/config/backend_config";
 import { Cabinets } from "@/types";
 
-// IDK why ENV is not working, so I just hardcoded the URL
-const URL = `http://localhost:3000/api`;
+// IDK why ENV is not working, so I just hardcoded the BACKEND_HOSTNAME
+
 
 /* 
 post request to verify drop off cabinet, return cabinet id, parcel_id, payload: locationId, deliveryNumber, code
@@ -16,7 +17,7 @@ const verifyDropOff = async (
   deliveryNumber: String,
   code: String
   ) => {
-  const response = await fetch(`${URL}/locations/verify-drop-off`, {
+  const response = await fetch(`${BACKEND_HOSTNAME}/locations/verify-drop-off`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

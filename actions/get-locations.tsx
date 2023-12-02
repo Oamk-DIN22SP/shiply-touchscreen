@@ -1,10 +1,11 @@
+import BACKEND_HOSTNAME from "@/config/backend_config";
 import { Location } from "@/types";
 
-// IDK why ENV is not working, so I just hardcoded the URL
-const URL = `http://localhost:3000/api`;
+// IDK why ENV is not working, so I just hardcoded the BACKEND_HOSTNAME
+
 
 const getLocation = async () => {
-  const res = await fetch(`${URL}/locations`);
+  const res = await fetch(`${BACKEND_HOSTNAME}/locations`);
   return res.json();
 
   const demoData: Location[] = [
