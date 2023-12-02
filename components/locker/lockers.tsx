@@ -43,7 +43,7 @@ const Lockers = () => {
 
   const onVerify = (cabinet_id: string) => {
     if (cabinet_id) {
-      lockerOperations("open");
+      lockerOperations("open", cabinet_id);
       cabinetStore.setState({ form: false });
       cabinetStore.setState({ state: "open" });
       cabinetStore.setState({ activeCabinetId: cabinet_id });
@@ -52,18 +52,11 @@ const Lockers = () => {
     }
   };
 
-  const lockerOperations = (status: string) => {
+  const lockerOperations = (status: string, cabinet_id: string) => {
     if (status === "open") {
       cabinetStore.setState({ operations: {
         btnText: "Close Cabinet Door",
-        title: `Door ${cabinetStore?.activeCabinetId || ""} is open for Delivery!`,
-        subtitle: "Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again.",
-        smallText: "Touch if the drop-off process is completed. This will lock the cabinet door. ",
-      }});
-    } else {
-      cabinetStore.setState({ operations: {
-        btnText: "Open Cabinet Door",
-        title: "Door 10 is closed for Delivery!",
+        title: `Door ${cabinet_id} is open for Delivery!`,
         subtitle: "Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again.",
         smallText: "Touch if the drop-off process is completed. This will lock the cabinet door. ",
       }});
