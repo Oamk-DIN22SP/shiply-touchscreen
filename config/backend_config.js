@@ -1,6 +1,2 @@
-// const BACKEND_HOSTNAME="https://shiply-server.onrender.com";
-
-const BACKEND_HOSTNAME = "https://shiply-server.onrender.com";
-const DEV_HOSTNAME = "http://localhost:3000";
-export default BACKEND_HOSTNAME;
-export { DEV_HOSTNAME }
+export const PROD_API_URL = "https://shiply-server.onrender.com/api";
+export const DEV_API_URL = "http://localhost:3000/api";

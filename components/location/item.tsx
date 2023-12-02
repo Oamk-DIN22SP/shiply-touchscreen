@@ -2,8 +2,6 @@ import useLocation from "@/hooks/use-location";
 import { cn } from "@/lib/utils";
 import { Location } from "@/types";
 import Button from "../ui/button";
-import useCabinet from "@/hooks/use-cabinet";
-import getCabinets from "@/actions/get-cabinets";
 interface LocationItemProps {
   location: Location;
 }

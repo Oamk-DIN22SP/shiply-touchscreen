@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import useLocation from "@/hooks/use-location";
 import getLocation from "@/actions/get-locations";
 import LocationItem from "./item";
-import getCabinets from "@/actions/get-cabinets";
-import useCabinet from "@/hooks/use-cabinet";
 
 const Locations = () => {
   // hook to get data from store
