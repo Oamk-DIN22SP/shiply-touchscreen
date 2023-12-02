@@ -47,8 +47,6 @@ const Lockers = () => {
       cabinetStore.setState({ form: false });
       cabinetStore.setState({ state: "open" });
       cabinetStore.setState({ activeCabinetId: cabinet_id });
-      console.log(cabinetStore);
-
     }
   };
 

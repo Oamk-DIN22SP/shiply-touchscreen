@@ -33,7 +33,7 @@ const LockerForm: React.FC<LockerFormProps> = ({
         toast.success("Successfully verified drop off.");
         onVerify(res.cabinet_id);
       }else{
-        toast.error("Invalid code or delivery number.");
+        toast.error(res.error);
         onVerify("");
       }
 
