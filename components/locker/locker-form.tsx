@@ -2,8 +2,15 @@ import toast from "react-hot-toast";
 import Button from "../ui/button";
 import { Input } from "../ui/input";
 import { useState } from "react";
-
-const LockerForm = () => {
+import verifyDropOff from "@/actions/verify-drop";
+interface LockerFormProps {
+  locationId: string;
+  onVerify: (id: string) => void;
+}
+const LockerForm: React.FC<LockerFormProps> = ({
+  locationId,
+  onVerify,
+}) => {
   const [loading, setLoading] = useState(false);
   const [code, setCode] = useState("");
   const [deliveryNumber, setDeliveryNumber] = useState("");
@@ -12,13 +19,24 @@ const LockerForm = () => {
     try {
       setLoading(true);
       if (!code) {
-        toast.error("Please select a drop off point.");
+        toast.error("Please enter code.");
         return;
       }
       if (!deliveryNumber) {
-        toast.error("Please enter a delivery number.");
+        toast.error("Please enter your delivery number.");
         return;
       }
+
+      // TODO: verify drop off
+      const res = await verifyDropOff(locationId, deliveryNumber, code);
+      if (res.cabinet_id) {
+        toast.success("Successfully verified drop off.");
+        onVerify(res.cabinet_id);
+      }else{
+        toast.error("Invalid code or delivery number.");
+        onVerify("");
+      }
+
     } catch (error: any) {
       toast.error("Something went wrong.");
     } finally {

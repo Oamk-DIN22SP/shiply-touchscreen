@@ -41,6 +41,35 @@ const Lockers = () => {
     return null;
   }
 
+  const onVerify = (cabinet_id: string) => {
+    if (cabinet_id) {
+      lockerOperations("open");
+      cabinetStore.setState({ form: false });
+      cabinetStore.setState({ state: "open" });
+      cabinetStore.setState({ activeCabinetId: cabinet_id });
+      console.log(cabinetStore);
+
+    }
+  };
+
+  const lockerOperations = (status: string) => {
+    if (status === "open") {
+      cabinetStore.setState({ operations: {
+        btnText: "Close Cabinet Door",
+        title: `Door ${cabinetStore?.activeCabinetId || ""} is open for Delivery!`,
+        subtitle: "Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again.",
+        smallText: "Touch if the drop-off process is completed. This will lock the cabinet door. ",
+      }});
+    } else {
+      cabinetStore.setState({ operations: {
+        btnText: "Open Cabinet Door",
+        title: "Door 10 is closed for Delivery!",
+        subtitle: "Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again.",
+        smallText: "Touch if the drop-off process is completed. This will lock the cabinet door. ",
+      }});
+    }
+  };
+
   return (
     <div>
       <LockerLocationDetails
@@ -54,15 +83,19 @@ const Lockers = () => {
         ))}
       </div>
 
-      {/* <LockerOperations
-        btnText="Close Cabinet Door"
-        title="Door 10 is open for Delivery!"
-        subtitle="Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again."
-        smallText="Touch if the drop-off process is completed. This will lock the cabinet door. "
-        onBtnClick={() => {}}
-      /> */}
-
-      <LockerForm />
+      {cabinetStore?.form ? (
+        <LockerForm 
+        locationId={locationStore?.active?.id || ""}
+        onVerify={onVerify}
+        />
+      ) : (
+        <LockerOperations
+          btnText= {cabinetStore?.operations?.btnText || ""}
+          title= {cabinetStore?.operations?.title || ""}
+          subtitle= {cabinetStore?.operations?.subtitle || ""}
+          smallText= {cabinetStore?.operations?.smallText || ""}
+        />
+      )}
     </div>
   );
 };

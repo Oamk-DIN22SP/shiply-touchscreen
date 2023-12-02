@@ -1,18 +1,19 @@
 import Button from "../ui/button";
 interface LockerOperationsProps {
-  btnText: string;
-  title: string;
-  subtitle: string;
-  smallText: string;
-  onBtnClick: () => void;
+  btnText: String;
+  title: String;
+  subtitle: String;
+  smallText: String;
 }
 const LockerOperations: React.FC<LockerOperationsProps> = ({
   btnText,
   title,
   subtitle,
   smallText,
-  onBtnClick
 }) => {
+  const onBtnClick = () => {
+    console.log("clicked");
+  };
   return (
     <div className="flex flex-col items-center justify-center gap-2 py-8">
       <h1 className="text-[28px] font-bold leading-8 text-[#4A4A4A]">
