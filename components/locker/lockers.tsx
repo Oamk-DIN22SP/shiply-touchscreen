@@ -41,22 +41,31 @@ const Lockers = () => {
     return null;
   }
 
-  const onVerify = (cabinet_id: string) => {
+  const onVerify = (cabinet_id: string, state: string) => {
     if (cabinet_id) {
-      lockerOperations("open", cabinet_id);
+      lockerOperations("open", cabinet_id, state);
       cabinetStore.setState({ form: false });
-      cabinetStore.setState({ state: "open" });
+      cabinetStore.setState({ state: "open-"+state });
       cabinetStore.setState({ activeCabinetId: cabinet_id });
     }
   };
 
-  const lockerOperations = (status: string, cabinet_id: string) => {
-    if (status === "open") {
+  const lockerOperations = (status: string, cabinet_id: string, state: string) => {
+    if (status === "open" && state === "drop") {
       cabinetStore.setState({ operations: {
         btnText: "Close Cabinet Door",
         title: `Door ${cabinet_id} is open for Delivery!`,
         subtitle: "Take the sticker specifically generated for your parcel and stick it on your package. Touch your cabinet number to generate sticker again.",
         smallText: "Touch if the drop-off process is completed. This will lock the cabinet door. ",
+      }});
+    }
+
+    if (status === "open" && state === "pick") {
+      cabinetStore.setState({ operations: {
+        btnText: "Close Cabinet Door",
+        title: `Door ${cabinet_id} is open for Pickup!`,
+        subtitle: "",
+        smallText: "Touch if the pick up process is completed. Your pick-up code is invalidated.  ",
       }});
     }
   };

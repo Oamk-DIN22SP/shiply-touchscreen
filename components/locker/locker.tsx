@@ -17,10 +17,10 @@ const Locker: React.FC<LockerProps> = ({ cabinet }) => {
       className={cn(
         "w-[120px] h-[120px] flex bg-[#E2E7FD] items-center justify-center rounded hover:cursor-pointer font-bold text-[58px] text-[#4A4A4A]",
         id === activeCabinetId && state === "locked" && "bg-[#F53D3D]",
-        id === activeCabinetId && state === "open" && "bg-[#A5F366]", 
+        id === activeCabinetId && (state === "open-drop" || state === "open-pick" ) && "bg-[#A5F366]", 
       )}
     >
-      {cabinet?.id}
+      {cabinet?.number}
     </div>
   );
 };

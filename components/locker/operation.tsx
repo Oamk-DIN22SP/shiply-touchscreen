@@ -19,13 +19,23 @@ const LockerOperations: React.FC<LockerOperationsProps> = ({
   const router = useRouter();
 
   const onBtnClick = () => {
-    if (cabinetStore.state === "open") {
+    if (cabinetStore.state === "open-drop") {
       cabinetStore.setState({ state: "locked" });
       cabinetStore.setState({ operations: {
         btnText: "OK",
         title: `Drop-off completed.`,
         subtitle: "Your package is ready to deliver. Turn back to main screen to interact with cabinets.",
         smallText: "Touch to turn back to main screen.",
+      }});
+    }
+    
+    if (cabinetStore.state === "open-pick") {
+      cabinetStore.setState({ state: "locked" });
+      cabinetStore.setState({ operations: {
+        btnText: "OK",
+        title: `Pick up completed..`,
+        subtitle: "Thanks for choosing us. Turn back to main screen to interact with cabinets.",
+        smallText: "Touch to turn back to main screen. ",
       }});
     }
 
