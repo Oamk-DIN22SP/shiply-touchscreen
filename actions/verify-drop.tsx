@@ -1,11 +1,11 @@
-import { DEV_API_URL, PROD_API_URL } from "@/config/backend_config";
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/locations/verify-drop-off`;
 
 const verifyDropOff = async (
   locationId: String,
   deliveryNumber: String,
   code: String
 ) => {
-  const response = await fetch(`${DEV_API_URL}/locations/verify-drop-off`, {
+  const response = await fetch(`${URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

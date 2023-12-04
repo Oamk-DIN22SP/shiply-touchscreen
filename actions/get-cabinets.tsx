@@ -1,7 +1,7 @@
-import { DEV_API_URL, PROD_API_URL } from "@/config/backend_config";
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/locations`;
 
 const getCabinets = async (locationId: String) => {
-  const res = await fetch(`${DEV_API_URL}/locations/${locationId}/cabinets`);
+  const res = await fetch(`${URL}/${locationId}/cabinets`);
   return res.json();
 };
 
