@@ -2,7 +2,6 @@
 import useLocation from "@/hooks/use-location";
 import Locker from "./locker";
 import useCabinet from "@/hooks/use-cabinet";
-import Button from "../ui/button";
 import LockerOperations from "./operation";
 import LockerLocationDetails from "./locker-location";
 import LockerForm from "./locker-form";

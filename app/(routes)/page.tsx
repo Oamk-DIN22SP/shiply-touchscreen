@@ -3,8 +3,6 @@
 import { useRouter } from "next/navigation";
 import Locations from "@/components/location/locations";
 import Button from "@/components/ui/button";
-import useLocation from "@/hooks/use-location";
-import toast from "react-hot-toast";
 
 export const revalidate = 0;
 const HomePage = async () => {
