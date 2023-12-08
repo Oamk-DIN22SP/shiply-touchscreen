@@ -40,9 +40,9 @@ const Lockers = () => {
     return null;
   }
 
-  const onVerify = (cabinet_id: string, state: string) => {
+  const onVerify = (cabinet_id: string, state: string, cabinet_number: string) => {
     if (cabinet_id) {
-      lockerOperations("open", cabinet_id, state);
+      lockerOperations("open", cabinet_number, state);
       cabinetStore.setState({ form: false });
       cabinetStore.setState({ state: "open-"+state });
       cabinetStore.setState({ activeCabinetId: cabinet_id });

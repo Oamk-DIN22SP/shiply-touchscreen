@@ -6,7 +6,7 @@ import verifyDropOff from "@/actions/verify-drop";
 import verifyPickUp from "@/actions/verify-pickup";
 interface LockerFormProps {
   locationId: string;
-  onVerify: (id: string, state: string) => void;
+  onVerify: (id: string, state: string, number: string) => void;
 }
 const LockerForm: React.FC<LockerFormProps> = ({ locationId, onVerify }) => {
   const [loading, setLoading] = useState(false);
@@ -30,17 +30,17 @@ const LockerForm: React.FC<LockerFormProps> = ({ locationId, onVerify }) => {
       if (res.cabinet_id) {
         console.log(res);
         toast.success("Successfully verified pick up.");
-        onVerify(res.cabinet_id, "pick");
+        onVerify(res.cabinet_id, "pick", res.cabinet_number);
       } else {
         // Verify drop off
         const res = await verifyDropOff(locationId, deliveryNumber, code);
         if (res.cabinet_id) {
           console.log(res);
           toast.success("Successfully verified drop off.");
-          onVerify(res.cabinet_id, "drop");
+          onVerify(res.cabinet_id, "drop", res.cabinet_number);
         }else {
           toast.error(res.error);
-          onVerify("", "");
+          onVerify("", "", "");
         }
       }
     } catch (error: any) {
