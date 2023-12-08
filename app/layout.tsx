@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
-        <div className="p-8 min-h-full flex justify-center items-center">
+        <div className="p-2 md:p-8 min-h-full flex justify-center items-center">
           <div className="max-w-[780px] w-full h-fit bg-gray-300 pb-4 pt-2 px-6 border-[5px] border-[#4A4A4A] rounded-[10px]">
             <Link href="/">
               <Image

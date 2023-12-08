@@ -23,7 +23,7 @@ const HomePage = async () => {
       <div className="flex flex-col items-center justify-center gap-2 py-8">
         <Button
           onClick={() => router.push("/lockers")}
-          className="px-6 py-2 w-fit font-bold bg-[#1D1D1D]"
+          className="px-4 md:px-6 py-2 w-fit font-bold bg-[#1D1D1D]"
         >
           GO
         </Button>
