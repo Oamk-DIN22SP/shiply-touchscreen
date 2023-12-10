@@ -9,11 +9,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import getCabinets from "@/actions/get-cabinets";
+import useLoader from "@/hooks/loader";
+import Loader from "../loader";
 
 const Lockers = () => {
   const router = useRouter();
   const cabinetStore = useCabinet();
   const locationStore = useLocation();
+  const loaderStore = useLoader();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const Lockers = () => {
     }
     const fetchData = async () => {
       try {
+        loaderStore.setLoading(true);
         if (locationStore.active) {
           const cabinets = await getCabinets(locationStore.active.id);
           cabinetStore.setState({ data: cabinets });
@@ -29,6 +33,10 @@ const Lockers = () => {
       } catch (error) {
         console.error("Error fetching cabinets:", error);
         toast.error("Error fetching cabinets");
+      } finally {
+        setTimeout(() => {
+          loaderStore.setLoading(false);
+        }, 500);
       }
     };
 
@@ -38,6 +46,14 @@ const Lockers = () => {
 
   if (!isMounted) {
     return null;
+  }
+
+  if (loaderStore.loading) {
+    return (
+      <div className="flex justify-center items-center my-20">
+        <Loader />
+      </div>
+    );
   }
 
   const onVerify = (cabinet_id: string, state: string, cabinet_number: string) => {
